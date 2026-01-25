@@ -20,8 +20,11 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   const exportBtn = document.getElementById('exportBtn')
   
   // Build full URL to the script file
-  const baseUrl = window.location.href.split('?')[0].replace(/\/$/, '')
-  const scriptUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1) + EXPORT_CONFIG.script
+  const pageUrl = window.location.href.split('?')[0].split('#')[0]
+  // If URL ends with /, just append script name. Otherwise, replace the HTML file with script name
+  const scriptUrl = pageUrl.endsWith('/') 
+    ? pageUrl + EXPORT_CONFIG.script
+    : pageUrl.substring(0, pageUrl.lastIndexOf('/') + 1) + EXPORT_CONFIG.script
   
   // Disable button and show progress
   exportBtn.disabled = true

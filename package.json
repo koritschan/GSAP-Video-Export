@@ -12,6 +12,7 @@
   "description": "GSAP Video Export Server",
   "dependencies": {
     "express": "^5.2.1",
-    "gsap-video-export": "^2.1.0"
+    "gsap-video-export": "^2.1.0",
+    "puppeteer": "^22.0.0"
   }
 }

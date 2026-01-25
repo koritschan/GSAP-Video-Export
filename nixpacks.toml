@@ -1,0 +1,6 @@
+# Railway Nixpacks configuration for Puppeteer/Chromium
+[phases.setup]
+nixPkgs = ["...", "chromium"]
+
+[phases.install]
+cmds = ["npm install"]

@@ -67,8 +67,7 @@ app.post('/export-video', async (req, res) => {
       resolution: resolution,
       fps: fps,
       selector: selector,
-      tiript: script,  // Specify the script file
-      scmeline: timeline,
+      timeline: timeline,
       scale: 1,
       verbose: true,
       preparePage: hideSelector ? `

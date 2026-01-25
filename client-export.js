@@ -5,7 +5,7 @@ const EXPORT_CONFIG = {
   serverUrl: 'https://gsap-video-export-production.up.railway.app/export-video',  // Railway URL
   
   // Animation configuration
-  url: window.location.href,  // Current page URL
+  url: 'https://gsap-video-export-production.up.railway.app/index.html',  // Must be publicly accessible URL
   timeline: 'tl',             // Your timeline variable name
   selector: '.container',      // Element to capture
   viewport: '1080x1920',      // 9:16 format

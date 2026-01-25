@@ -91,12 +91,18 @@ app.post('/export-video', async (req, res) => {
       verbose: true,
       wait: 5000,  // Wait 5 seconds for page to fully load
       preparePage: `
-        // Hide export button
-        document.body.classList.add('exporting');
+        // Aggressively hide export button multiple ways
         const btn = document.querySelector('${hideSelector}');
-        if (btn) btn.style.display = 'none';
+        if (btn) {
+          btn.style.display = 'none';
+          btn.style.visibility = 'hidden';
+          btn.style.opacity = '0';
+          btn.remove(); // Remove from DOM entirely
+        }
+        document.body.classList.add('exporting');
         
         console.log('Page prepared. Timeline window.${timeline} exists:', !!window.${timeline});
+        console.log('Button removed:', !document.querySelector('${hideSelector}'));
       `
     })
     

@@ -2,7 +2,7 @@
 // Configuration for this specific animation
 const EXPORT_CONFIG = {
   // Server URL - change this after deploying to Railway
-  serverUrl: 'http://localhost:3000/export-video',  // Update to Railway URL when deployed
+  serverUrl: 'https://gsap-video-export-production.up.railway.app/export-video',  // Railway URL
   
   // Animation configuration
   url: window.location.href,  // Current page URL

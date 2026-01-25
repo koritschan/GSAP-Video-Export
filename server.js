@@ -61,6 +61,12 @@ app.post('/export-video', async (req, res) => {
     scriptPath,
     scriptExists: fs.existsSync(scriptPath)
   })
+
+  if (!fs.existsSync(scriptPath)) {
+    return res.status(400).json({
+      error: `Timeline script not found on server: ${scriptPath}`
+    })
+  }
   
   try {
     console.log('Attempting export with config:', {

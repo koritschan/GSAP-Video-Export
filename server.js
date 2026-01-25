@@ -70,10 +70,25 @@ app.post('/export-video', async (req, res) => {
       timeline: timeline,
       scale: 1,
       verbose: true,
-      preparePage: hideSelector ? `
+      preparePage: `
+        // Wait for timeline to be ready
+        await new Promise(resolve => {
+          const checkTimeline = () => {
+            if (window.${timeline}) {
+              resolve();
+            } else {
+              setTimeout(checkTimeline, 100);
+            }
+          };
+          checkTimeline();
+        });
+        
+        // Hide export button
         const btn = document.querySelector('${hideSelector}');
         if (btn) btn.style.display = 'none';
-      ` : undefined
+        
+        console.log('Timeline ready:', window.${timeline});
+      `
     })
     
     console.log('✅ Export complete, sending file...')

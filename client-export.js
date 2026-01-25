@@ -7,7 +7,7 @@ const EXPORT_CONFIG = {
   // Animation configuration
   url: window.location.href,  // Current page URL (must be publicly accessible)
   timeline: 'tl',             // Your timeline variable name
-  script: 'gsapAnimation.js', // Script file containing the timeline
+  script: 'gsapAnimation.js', // Script file - RELATIVE to the page URL
   selector: '.container',      // Element to capture
   viewport: '1080x1920',      // 9:16 format
   resolution: '1080x1920',
@@ -18,13 +18,6 @@ const EXPORT_CONFIG = {
 
 document.getElementById('exportBtn').addEventListener('click', async () => {
   const exportBtn = document.getElementById('exportBtn')
-  
-  // Build full URL to the script file
-  const pageUrl = window.location.href.split('?')[0].split('#')[0]
-  // If URL ends with /, just append script name. Otherwise, replace the HTML file with script name
-  const scriptUrl = pageUrl.endsWith('/') 
-    ? pageUrl + EXPORT_CONFIG.script
-    : pageUrl.substring(0, pageUrl.lastIndexOf('/') + 1) + EXPORT_CONFIG.script
   
   // Disable button and show progress
   exportBtn.disabled = true
@@ -39,7 +32,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
       body: JSON.stringify({
         url: EXPORT_CONFIG.url,
         timeline: EXPORT_CONFIG.timeline,
-        script: scriptUrl,  // Send full URL to script
+        script: EXPORT_CONFIG.script,  // Relative path
         selector: EXPORT_CONFIG.selector,
         viewport: EXPORT_CONFIG.viewport,
         resolution: EXPORT_CONFIG.resolution,

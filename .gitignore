@@ -3,3 +3,6 @@ img/
 
 # deployment instructions
 DEPLOY.md
+
+# hidden MacOS files
+.DS_Store

@@ -19,6 +19,10 @@ const EXPORT_CONFIG = {
 document.getElementById('exportBtn').addEventListener('click', async () => {
   const exportBtn = document.getElementById('exportBtn')
   
+  // Build full URL to the script file
+  const baseUrl = window.location.href.split('?')[0].replace(/\/$/, '')
+  const scriptUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1) + EXPORT_CONFIG.script
+  
   // Disable button and show progress
   exportBtn.disabled = true
   exportBtn.textContent = 'Exporting... (this may take 30-60 seconds)'
@@ -31,8 +35,8 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
       },
       body: JSON.stringify({
         url: EXPORT_CONFIG.url,
-        tcript: EXPORT_CONFIG.script,
-        simeline: EXPORT_CONFIG.timeline,
+        timeline: EXPORT_CONFIG.timeline,
+        script: scriptUrl,  // Send full URL to script
         selector: EXPORT_CONFIG.selector,
         viewport: EXPORT_CONFIG.viewport,
         resolution: EXPORT_CONFIG.resolution,

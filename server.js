@@ -49,6 +49,7 @@ app.post('/export-video', async (req, res) => {
   }
   
   const outputFile = path.join(__dirname, `export-${Date.now()}.mp4`)
+  const scriptPath = path.join(__dirname, 'gsapAnimation.js')
   
   console.log('Export config:', {
     url,
@@ -56,7 +57,9 @@ app.post('/export-video', async (req, res) => {
     selector,
     viewport,
     resolution,
-    fps
+    fps,
+    scriptPath,
+    scriptExists: fs.existsSync(scriptPath)
   })
   
   try {
@@ -65,8 +68,9 @@ app.post('/export-video', async (req, res) => {
       selector,
       viewport,
       resolution,
-      fps
-    });
+      fps,
+      scriptPath
+    })
     
     await videoExport({
       url: url.endsWith('/') ? url + 'index.html' : url,  // Ensure explicit file
@@ -75,7 +79,8 @@ app.post('/export-video', async (req, res) => {
       resolution: resolution,
       fps: fps,
       selector: selector,
-      // timeline: timeline,  // Try without timeline parameter
+      timeline: timeline,
+      script: scriptPath,
       scale: 1,
       verbose: true,
       wait: 5000,  // Wait 5 seconds for page to fully load
@@ -84,8 +89,7 @@ app.post('/export-video', async (req, res) => {
         const btn = document.querySelector('${hideSelector}');
         if (btn) btn.style.display = 'none';
         
-        console.log('Page prepared. Timeline window.tl exists:', !!window.tl);
-        console.log('Timeline:', window.tl);
+        console.log('Page prepared. Timeline window.${timeline} exists:', !!window.${timeline});
       `
     })
     

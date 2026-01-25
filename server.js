@@ -70,24 +70,13 @@ app.post('/export-video', async (req, res) => {
       timeline: timeline,
       scale: 1,
       verbose: true,
+      wait: 3000,  // Wait 3 seconds for page to fully load
       preparePage: `
-        // Wait for timeline to be ready
-        await new Promise(resolve => {
-          const checkTimeline = () => {
-            if (window.${timeline}) {
-              resolve();
-            } else {
-              setTimeout(checkTimeline, 100);
-            }
-          };
-          checkTimeline();
-        });
-        
         // Hide export button
         const btn = document.querySelector('${hideSelector}');
         if (btn) btn.style.display = 'none';
         
-        console.log('Timeline ready:', window.${timeline});
+        console.log('Page prepared. Timeline exists:', !!window.${timeline});
       `
     })
     

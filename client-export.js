@@ -8,9 +8,9 @@ const EXPORT_CONFIG = {
   url: window.location.href,  // Current page URL (must be publicly accessible)
   timeline: 'tl',             // Your timeline variable name (window.tl)
   selector: '.container',      // Element to capture
-  viewport: '1080x1920',      // 9:16 format
-  resolution: '1080x1920',
-  fps: 30,
+  viewport: '720x1280',      // 9:16 format (reduced for Railway memory limits)
+  resolution: '720x1280',
+  fps: 24,
   filename: 'gsap-animation-9-16.mp4',
   hideSelector: '#exportBtn'   // Hide export button in video
 }

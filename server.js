@@ -92,6 +92,7 @@ app.post('/export-video', async (req, res) => {
       wait: 5000,  // Wait 5 seconds for page to fully load
       preparePage: `
         // Hide export button
+        document.body.classList.add('exporting');
         const btn = document.querySelector('${hideSelector}');
         if (btn) btn.style.display = 'none';
         

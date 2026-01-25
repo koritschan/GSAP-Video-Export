@@ -55,3 +55,7 @@ img {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+body.exporting #exportBtn {
+    display: none !important;
+}

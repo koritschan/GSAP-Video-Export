@@ -41,8 +41,7 @@ app.post('/export-video', async (req, res) => {
     resolution = '1080x1920', // Output resolution
     fps = 30,
     filename = 'animation.mp4',
-    hideSelector = '#exportBtn',  // Element to hide during export
-    script = 'gsapAnimation.js'    // Script file containing the timeline
+    hideSelector = '#exportBtn'  // Element to hide during export
   } = req.body
   
   if (!url) {

@@ -6,8 +6,7 @@ const EXPORT_CONFIG = {
   
   // Animation configuration
   url: window.location.href,  // Current page URL (must be publicly accessible)
-  timeline: 'tl',             // Your timeline variable name
-  script: 'gsapAnimation.js', // Script file - RELATIVE to the page URL
+  timeline: 'tl',             // Your timeline variable name (window.tl)
   selector: '.container',      // Element to capture
   viewport: '1080x1920',      // 9:16 format
   resolution: '1080x1920',
@@ -32,7 +31,6 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
       body: JSON.stringify({
         url: EXPORT_CONFIG.url,
         timeline: EXPORT_CONFIG.timeline,
-        script: EXPORT_CONFIG.script,  // Relative path
         selector: EXPORT_CONFIG.selector,
         viewport: EXPORT_CONFIG.viewport,
         resolution: EXPORT_CONFIG.resolution,

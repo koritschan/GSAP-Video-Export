@@ -60,6 +60,14 @@ app.post('/export-video', async (req, res) => {
   })
   
   try {
+    console.log('Attempting export with config:', {
+      url: url.endsWith('/') ? url + 'index.html' : url,
+      selector,
+      viewport,
+      resolution,
+      fps
+    });
+    
     await videoExport({
       url: url.endsWith('/') ? url + 'index.html' : url,  // Ensure explicit file
       output: outputFile,
@@ -67,7 +75,7 @@ app.post('/export-video', async (req, res) => {
       resolution: resolution,
       fps: fps,
       selector: selector,
-      timeline: timeline,
+      // timeline: timeline,  // Try without timeline parameter
       scale: 1,
       verbose: true,
       wait: 5000,  // Wait 5 seconds for page to fully load
@@ -76,7 +84,8 @@ app.post('/export-video', async (req, res) => {
         const btn = document.querySelector('${hideSelector}');
         if (btn) btn.style.display = 'none';
         
-        console.log('Page prepared. Timeline exists:', !!window.${timeline});
+        console.log('Page prepared. Timeline window.tl exists:', !!window.tl);
+        console.log('Timeline:', window.tl);
       `
     })
     

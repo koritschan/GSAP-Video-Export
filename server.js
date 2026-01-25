@@ -30,6 +30,7 @@ app.use((req, res, next) => {
 // Export endpoint - accepts configuration for any animation
 app.post('/export-video', async (req, res) => {
   console.log('📹 Video export request received...')
+  console.log('Request body:', JSON.stringify(req.body, null, 2))
   
   // Get configuration from request body
   const {
@@ -49,6 +50,16 @@ app.post('/export-video', async (req, res) => {
   }
   
   const outputFile = path.join(__dirname, `export-${Date.now()}.mp4`)
+  console.log('Export config:', {
+    url,
+    script,
+    timeline,
+    selector,
+    viewport,
+    resolution,
+    fps
+  })
+  
   
   try {
     await videoExport({

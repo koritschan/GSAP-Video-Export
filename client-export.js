@@ -41,7 +41,9 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     })
     
     if (!response.ok) {
-      throw new Error('Export failed')
+      const errorData = await response.json().catch(() => ({}))
+      console.error('Server error:', errorData)
+      throw new Error(errorData.error || 'Export failed')
     }
     
     // Get the video blob

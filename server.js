@@ -83,7 +83,11 @@ app.post('/export-video', async (req, res) => {
     
   } catch (err) {
     console.error('❌ Export failed:', err)
-    res.status(500).json({ error: err.message })
+    console.error('Full error:', err.stack)
+    res.status(500).json({ 
+      error: err.message,
+      stack: process.env.NODE_ENV !== 'production' ? err.stack : undefined
+    })
   }
 })
 

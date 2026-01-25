@@ -61,7 +61,7 @@ app.post('/export-video', async (req, res) => {
   
   try {
     await videoExport({
-      url: url,
+      url: url.endsWith('/') ? url + 'index.html' : url,  // Ensure explicit file
       output: outputFile,
       viewport: viewport,
       resolution: resolution,
@@ -70,7 +70,7 @@ app.post('/export-video', async (req, res) => {
       timeline: timeline,
       scale: 1,
       verbose: true,
-      wait: 3000,  // Wait 3 seconds for page to fully load
+      wait: 5000,  // Wait 5 seconds for page to fully load
       preparePage: `
         // Hide export button
         const btn = document.querySelector('${hideSelector}');

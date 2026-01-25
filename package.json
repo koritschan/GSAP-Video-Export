@@ -1,0 +1,17 @@
+{
+  "name": "gsap-video-export-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "GSAP Video Export Server",
+  "dependencies": {
+    "express": "^5.2.1",
+    "gsap-video-export": "^2.1.0"
+  }
+}

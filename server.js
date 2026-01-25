@@ -102,6 +102,6 @@ app.post('/export-video', async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`)
-  console.log(`📄 Open http://localhost:${PORT}/index.html to test`)
+  console.log(`🚀 Server running on port ${PORT}`)
+  console.log(`📄 Environment: ${process.env.NODE_ENV || 'development'}`)
 })

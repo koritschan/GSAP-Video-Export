@@ -12,7 +12,7 @@ const EXPORT_CONFIG = {
   resolution: '720x1280',
   fps: 24,
   filename: 'gsap-animation-9-16.mp4',
-  hideSelector: '#exportBtn'   // Hide export button in video
+  hideSelector: '.export-button'   // Hide export button in video
 }
 
 document.getElementById('exportBtn').addEventListener('click', async () => {

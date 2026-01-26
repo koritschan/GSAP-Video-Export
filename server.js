@@ -41,7 +41,7 @@ app.post('/export-video', async (req, res) => {
     resolution = '1080x1920', // Output resolution
     fps = 30,
     filename = 'animation.mp4',
-    hideSelector = '.export-button'  // Element to hide during export
+    hideSelector = '#exportBtn'  // Element to hide during export
   } = req.body
   
   if (!url) {

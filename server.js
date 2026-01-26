@@ -92,7 +92,7 @@ app.post('/export-video', async (req, res) => {
       wait: 5000,  // Wait 5 seconds for page to fully load
       preparePage: `
         const hideButton = () => {
-          const btn = document.querySelector('${hideSelector}');
+          const btn = document.getElementById('${hideSelector}');
           if (btn) {
             btn.style.display = 'none';
             btn.style.visibility = 'hidden';
@@ -102,28 +102,6 @@ app.post('/export-video', async (req, res) => {
           }
           return false;
         };
-
-        const keepHidingButton = (intervalMs = 200) => {
-          hideButton();
-
-          setInterval(() => {
-            hideButton();
-          }, intervalMs);
-
-          const observer = new MutationObserver(() => {
-            hideButton();
-          });
-          observer.observe(document.body, { childList: true, subtree: true });
-        };
-
-        // Add class first for CSS-based hiding
-        document.body.classList.add('exporting');
-
-        // Keep hiding for the duration of the export
-        keepHidingButton();
-
-        console.log('Page prepared. Timeline window.${timeline} exists:', !!window.${timeline});
-        console.log('Button removed:', !document.querySelector('${hideSelector}'));
       `
     })
     

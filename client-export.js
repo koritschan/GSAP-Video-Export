@@ -17,10 +17,14 @@ const EXPORT_CONFIG = {
 
 document.getElementById('exportBtn').addEventListener('click', async () => {
   const exportBtn = document.getElementById('exportBtn')
+  const exportBtnParent = exportBtn.parentNode
+  const exportBtnNextSibling = exportBtn.nextSibling
   
   // Disable button and show progress
   exportBtn.disabled = true
   exportBtn.textContent = 'Exporting... (this may take 30-60 seconds)'
+  // Remove button from DOM during export to prevent it appearing in the capture
+  exportBtn.remove()
   
   try {
     const response = await fetch(EXPORT_CONFIG.serverUrl, {
@@ -59,7 +63,10 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
     
-    // Reset button
+    // Re-add and reset button
+    if (exportBtnParent) {
+      exportBtnParent.insertBefore(exportBtn, exportBtnNextSibling)
+    }
     exportBtn.disabled = false
     exportBtn.textContent = 'Export Video (9:16)'
     
@@ -69,6 +76,9 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     console.error('Export error:', err)
     alert('Export failed. Please try again.')
     
+    if (exportBtnParent) {
+      exportBtnParent.insertBefore(exportBtn, exportBtnNextSibling)
+    }
     exportBtn.disabled = false
     exportBtn.textContent = 'Export Video (9:16)'
   }

@@ -1,7 +1,7 @@
 // Client-side video export handler
 // Configuration for this specific animation
 const EXPORT_CONFIG = {
-  // Server URL - change this after deploying to Railway
+  // Server URL
   serverUrl: 'https://gsap-video-export-production.up.railway.app/export-video',  // Railway URL
   
   // Animation configuration

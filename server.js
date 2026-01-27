@@ -70,7 +70,7 @@ app.post('/export-video', async (req, res) => {
   
   try {
     console.log('Attempting export with config:', {
-      url: url.endsWith('/') ? url + 'index.html' : url,
+      url: url.endsWith('/') ? url + 'index4capture.html' : url,
       selector,
       viewport,
       resolution,
@@ -79,7 +79,7 @@ app.post('/export-video', async (req, res) => {
     })
     
     await videoExport({
-      url: url.endsWith('/') ? url + 'index.html' : url,  // Ensure explicit file
+      url: url.endsWith('/') ? url + 'index4capture.html' : url,  // Ensure explicit file
       output: outputFile,
       viewport: viewport,
       resolution: resolution,

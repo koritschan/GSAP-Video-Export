@@ -3,4 +3,4 @@
 nixPkgs = ["...", "chromium"]
 
 [phases.install]
-cmds = ["npm install"]
+cmds = ["npm install --omit=dev"]

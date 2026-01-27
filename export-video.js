@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Path to the HTML file
-const htmlFile = path.join(__dirname, 'index.html')
+const htmlFile = path.join(__dirname, 'index4capture.html')
 
 console.log('Starting video export...')
 console.log('This will take a few minutes to render all frames.\n')

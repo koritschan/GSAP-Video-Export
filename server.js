@@ -40,8 +40,7 @@ app.post('/export-video', async (req, res) => {
     viewport = '1080x1920',   // Viewport size
     resolution = '1080x1920', // Output resolution
     fps = 30,
-    filename = 'animation.mp4',
-    hideSelector = '#exportBtn'  // Element to hide during export
+    filename = 'animation.mp4'
   } = req.body
   
   if (!url) {
@@ -89,20 +88,7 @@ app.post('/export-video', async (req, res) => {
       script: scriptPath,
       scale: 1,
       verbose: true,
-      wait: 5000,  // Wait 5 seconds for page to fully load
-      preparePage: `
-        const hideButton = () => {
-          const btn = document.getElementById('${hideSelector}');
-          if (btn) {
-            btn.style.display = 'none';
-            btn.style.visibility = 'hidden';
-            btn.style.opacity = '0';
-            btn.remove(); // Remove from DOM entirely
-            return true;
-          }
-          return false;
-        };
-      `
+      wait: 5000  // Wait 5 seconds for page to fully load
     })
     
     console.log('✅ Export complete, sending file...')

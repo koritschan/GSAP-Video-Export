@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Animation with Video Export</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="mrz-corporate-design.css">
+    <link rel="stylesheet" href="animation.css">
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+</head>
+<body>
+    <!-- 
+    =========================================================================
+    Export Button
+    =========================================================================
+    - Triggers video export via Railway server
+    - Hidden during video capture (has 'do-not-capture' class)
+    -->
+    <button id="videoExportButton" class="export-button do-not-capture">
+        Export Video (9:16)
+    </button>
+    
+    <!-- 
+    =========================================================================
+    Animation Container
+    =========================================================================
+    - This element is captured for video export
+    - Must match the 'selector' in video-export-client.js
+    -->
+    <div class="animation-container">
+        <img class="animated-element" src="img/2020.458_35905.jpg" alt="Weibliche Figur, mwana hiti">
+        <img class="animated-element" src="img/2020.460_41719.jpg" alt="Weibliche Figur, mwana hiti">
+    </div>
+    
+    <!-- Animation Script (defines the GSAP timeline) -->
+    <script src="animation.js"></script>
+    
+    <!-- Video Export Client (handles export button interaction) -->
+    <script src="video-export-client.js"></script>
+</body>
+</html>

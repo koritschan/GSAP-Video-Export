@@ -1,0 +1,14 @@
+# =============================================================================
+# Railway Nixpacks Configuration
+# =============================================================================
+# 
+# Required for Puppeteer/Chromium to work on Railway's Linux containers.
+# Chromium is the headless browser used to render and capture animations.
+#
+# =============================================================================
+
+[phases.setup]
+nixPkgs = ["...", "chromium"]
+
+[phases.install]
+cmds = ["npm install --omit=dev"]

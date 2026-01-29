@@ -1,0 +1,85 @@
+/**
+ * =============================================================================
+ * Animation Styles
+ * =============================================================================
+ * 
+ * Styles for the GSAP animation page.
+ * Note: Color variables are defined in mrz-corporate-design.css
+ * 
+ * =============================================================================
+ */
+
+/* -----------------------------------------------------------------------------
+   Reset & Base Styles
+----------------------------------------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--shades-black-1);
+  color: var(--screen-white);
+  overflow: hidden;
+}
+
+/* -----------------------------------------------------------------------------
+   Animation Container
+----------------------------------------------------------------------------- */
+
+.animation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* -----------------------------------------------------------------------------
+   Animated Elements
+----------------------------------------------------------------------------- */
+
+.animated-element {
+  width: 200px;
+  height: 200px;
+  margin: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  box-shadow: -4px 4px 16px 0 rgba(0, 0, 0, 1);
+}
+
+/* -----------------------------------------------------------------------------
+   Export Button
+----------------------------------------------------------------------------- */
+
+.export-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  background-color: var(--screen-white);
+  color: var(--shades-black-1);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Akkurat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.export-button:hover {
+  background-color: #e0e0e0;
+}
+
+.export-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

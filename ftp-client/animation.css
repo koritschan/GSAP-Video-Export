@@ -37,6 +37,7 @@ body {
   width: 100vw;
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 /* -----------------------------------------------------------------------------
@@ -44,8 +45,8 @@ body {
 ----------------------------------------------------------------------------- */
 
 .animated-element {
-  width: 200px;
-  height: 200px;
+  max-width: 45vw;
+  max-height: 45vh;
   margin: 1em;
   display: flex;
   align-items: center;

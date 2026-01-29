@@ -14,9 +14,9 @@
 // -----------------------------------------------------------------------------
 
 const EASING = {
-  smooth: "power2.inOut",     // Smooth acceleration and deceleration
-  quickReveal: "expo.out",    // Fast start, gradual slowdown
-  gentleFade: "circ.in"       // Gradual start, faster finish
+  ruhigeAnimation: "power2.inOut",     // Smooth acceleration and deceleration, cubic-bezier(0.65, 0, 0.35, 1)
+  schnellesErscheinen: "expo.out",    // Fast start, gradual slowdown, cubic-bezier(0.16, 1, 0.3, 1)
+  sanftesErscheinen: "circ.in"       // Gradual start, faster finish, cubic-bezier(0.55, 0, 1, 0.45)
 };
 
 // -----------------------------------------------------------------------------
@@ -35,7 +35,7 @@ tl.from(".animation-container .animated-element:first-child", {
   x: "100%",              // Start off-screen to the right
   opacity: 0,             // Fade in
   duration: 2,
-  ease: EASING.smooth
+  ease: EASING.ruhigeAnimation
 });
 
 // --- SECOND ELEMENT: Slide in from below ---
@@ -44,7 +44,7 @@ tl.from(".animation-container .animated-element:nth-child(2)", {
   y: "20%",               // Start slightly below final position
   opacity: 0,             // Fade in
   duration: 1,
-  ease: EASING.quickReveal
+  ease: EASING.schnellesErscheinen
 }, "+=0");                // No gap between animations
 
 // --- SUBTLE BOUNCE: Both elements shift slightly ---
@@ -52,14 +52,14 @@ tl.from(".animation-container .animated-element:nth-child(2)", {
 tl.to(".animation-container .animated-element:first-child", {
   x: "-1em",
   duration: 0.5,
-  ease: EASING.smooth
+  ease: EASING.ruhigeAnimation
 }, "+=1.2");              // Wait 1.2 seconds after previous animation
 
 // Second element moves right (overlaps with first element's movement)
 tl.to(".animation-container .animated-element:nth-child(2)", {
   x: "1em",
   duration: 0.5,
-  ease: EASING.smooth
+  ease: EASING.ruhigeAnimation
 }, "-=0.5");              // Start 0.5 seconds before previous animation ends
 
 // --- END HOLD ---

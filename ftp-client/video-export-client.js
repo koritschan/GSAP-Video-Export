@@ -35,8 +35,8 @@ const VIDEO_EXPORT_CONFIG = {
   selector: '.animation-container',
   
   // Video dimensions (9:16 vertical format for social media)
-  viewport: '720x1280',
-  resolution: '720x1280',
+  viewport: '1080x1920',
+  resolution: '1080x1920',
   
   // Frames per second (24 is cinematic, 30 is standard, 60 is smooth)
   fps: 24,
@@ -54,7 +54,7 @@ document.getElementById('videoExportButton').addEventListener('click', async () 
   
   // --- UPDATE UI: Show loading state ---
   exportButton.disabled = true;
-  exportButton.textContent = 'Exporting... (30-60 seconds)';
+  exportButton.textContent = 'Exporting... (this might take a while, do not close this tab/window)';
   
   try {
     // --- SEND EXPORT REQUEST TO SERVER ---

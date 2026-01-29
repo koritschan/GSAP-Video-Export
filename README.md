@@ -40,8 +40,10 @@ Convert GSAP animations into MP4 video files for social media and other uses.
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        RAILWAY SERVER                                    │
 │  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │  2. Server receives request with animation URL                    │  │
-│  │  3. Puppeteer opens the animation page                           │  │
+│  │  2. Server receives request with directory URL                   │  │
+│  │  3. Puppeteer opens index4capture.html (clean version)           │  │
+│  │     - Fetches index.html from same directory                     │  │
+│  │     - Strips out .do-not-capture elements (export button)        │  │
 │  │  4. Captures each frame of the GSAP timeline                     │  │
 │  │  5. Encodes frames into MP4                                      │  │
 │  │  6. Sends video back to browser ─────────────────────────────────│──┼──► Download

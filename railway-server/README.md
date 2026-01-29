@@ -62,6 +62,12 @@ const VIDEO_EXPORT_CONFIG = {
 }
 ```
 
+**How it works:**
+- Server receives directory URL (e.g., `https://site.com/animation/`)
+- Appends `index4capture.html` → visits `https://site.com/animation/index4capture.html`
+- That page fetches `index.html` and strips `.do-not-capture` elements
+- Clean animation is captured without UI controls
+
 **Response:** Binary MP4 file download
 
 ## Environment

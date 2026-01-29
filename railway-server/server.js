@@ -78,8 +78,7 @@ app.post('/export-video', async (req, res) => {
     viewport = '1080x1920',
     resolution = '1080x1920',
     fps = 30,
-    filename = 'animation.mp4',
-    hideSelector = '.do-not-capture'  // Elements to hide during capture
+    filename = 'animation.mp4'
   } = req.body
   
   // Validate required URL parameter
@@ -93,20 +92,24 @@ app.post('/export-video', async (req, res) => {
   // Generate unique temporary filename in system temp directory
   const tempOutputFile = path.join(os.tmpdir(), `gsap-export-${Date.now()}.mp4`)
   
+  // Use index4capture.html which strips out .do-not-capture elements
+  // If URL ends with /, append index4capture.html, otherwise use as-is
+  const captureUrl = url.endsWith('/') ? url + 'index4capture.html' : url
+  
   console.log('Export configuration:', {
-    url,
+    originalUrl: url,
+    captureUrl,
     timeline,
     selector,
     viewport,
     resolution,
-    fps,
-    hideSelector
+    fps
   })
 
   try {
     // Run the video export using Puppeteer
     await videoExport({
-      url: url,
+      url: captureUrl,
       output: tempOutputFile,
       viewport: viewport,
       resolution: resolution,
@@ -115,19 +118,7 @@ app.post('/export-video', async (req, res) => {
       timeline: timeline,
       scale: 1,
       verbose: true,
-      wait: 5000,  // Wait 5 seconds for page and assets to fully load
-      
-      // Hide specified elements before capture begins
-      prepare: async (page) => {
-        if (hideSelector) {
-          await page.evaluate((sel) => {
-            document.querySelectorAll(sel).forEach(el => {
-              el.style.display = 'none';
-            });
-          }, hideSelector);
-          console.log(`🙈 Hidden elements matching: ${hideSelector}`);
-        }
-      }
+      wait: 5000  // Wait 5 seconds for page and assets to fully load
     })
     
     console.log('✅ Video export complete, sending file to client')

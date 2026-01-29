@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Capture Page</title>
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+</head>
+<body>
+    <script>
+        /**
+         * This page fetches index.html, removes all elements with class 
+         * "do-not-capture", and renders the cleaned content for video export.
+         * 
+         * The Railway server will visit THIS page instead of index.html to 
+         * capture the animation without UI controls like the export button.
+         */
+        
+        fetch('index.html')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Copy stylesheets from index.html to this page
+                const headStyles = doc.head.querySelectorAll('link[rel="stylesheet"], style');
+                headStyles.forEach(styleNode => {
+                    const cloned = styleNode.cloneNode(true);
+                    document.head.appendChild(cloned);
+                });
+                
+                // Remove all elements with "do-not-capture" class
+                doc.querySelectorAll('.do-not-capture').forEach(el => el.remove());
+                
+                // Insert the cleaned content into the body
+                document.body.innerHTML = doc.body.innerHTML;
+                
+                // Load and execute scripts from index.html (except video-export-client.js)
+                const scripts = doc.querySelectorAll('script');
+                scripts.forEach(script => {
+                    // Skip the video export client script (not needed for capture)
+                    if (script.src && script.src.includes('video-export-client.js')) {
+                        return;
+                    }
+                    
+                    const newScript = document.createElement('script');
+                    if (script.src) {
+                        newScript.src = script.src;
+                    } else {
+                        newScript.textContent = script.textContent;
+                    }
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(err => {
+                console.error('Failed to load index.html:', err);
+                document.body.innerHTML = '<h1>Error loading animation</h1>';
+            });
+    </script>
+</body>
+</html>

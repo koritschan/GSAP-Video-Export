@@ -6,12 +6,21 @@ This folder contains the files to upload to your FTP/web server.
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Main animation page |
+| `index.html` | Main animation page (with export button) |
+| `index4capture.html` | Clean version for video export (no UI controls) |
 | `animation.js` | GSAP timeline definition |
 | `animation.css` | Animation-specific styles |
 | `video-export-client.js` | Handles export button & server communication |
 | `mrz-corporate-design.css` | Corporate design tokens (colors, fonts) |
 | `img/` | Image assets |
+
+### Why Two HTML Files?
+
+- **index.html** - The page users see with the export button
+- **index4capture.html** - Railway server visits this page for video capture
+  - Fetches `index.html` content
+  - Removes all `.do-not-capture` elements (like the export button)
+  - Renders clean animation for recording
 
 ## Setup
 
@@ -31,8 +40,9 @@ const VIDEO_EXPORT_CONFIG = {
 Upload all files to your web server, maintaining the folder structure:
 
 ```
-your-website.com/
-├── index.html
+your-website.com/animation/
+├── index.html                  ← Main page (users visit this)
+├── index4capture.html          ← Capture page (Railway visits this)
 ├── animation.js
 ├── animation.css
 ├── video-export-client.js
@@ -44,10 +54,12 @@ your-website.com/
 
 ### 3. Test
 
-1. Open `https://your-website.com/` in a browser
+1. Open `https://your-website.com/animation/` in a browser
 2. Click "Export Video (9:16)" button
 3. Wait 30-60 seconds for the video to generate
 4. Video will automatically download
+
+**Note:** The client sends the directory URL to Railway, which appends `index4capture.html` automatically.
 
 ## Customization
 

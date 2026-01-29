@@ -23,9 +23,10 @@ const VIDEO_EXPORT_CONFIG = {
   // Railway server URL - UPDATE THIS after deploying your server
   serverUrl: 'https://gsap-video-export-production.up.railway.app/export-video',
   
-  // Animation page URL (automatically uses current page)
+  // Animation page URL (automatically uses current page's directory)
   // IMPORTANT: Must be publicly accessible, not localhost!
-  pageUrl: window.location.href,
+  // Server will append 'index4capture.html' to this URL
+  pageUrl: window.location.href.replace(/[^/]*$/, ''),  // Remove filename, keep directory path
   
   // GSAP timeline variable name (must match your animation.js export)
   timeline: 'tl',
@@ -41,10 +42,7 @@ const VIDEO_EXPORT_CONFIG = {
   fps: 24,
   
   // Output filename
-  filename: 'gsap-animation-9-16.mp4',
-  
-  // Elements to hide during capture (e.g., the export button itself)
-  hideSelector: '#videoExportButton'
+  filename: 'gsap-animation-9-16.mp4'
 };
 
 // -----------------------------------------------------------------------------
@@ -76,7 +74,6 @@ document.getElementById('videoExportButton').addEventListener('click', async () 
         hideSelector: VIDEO_EXPORT_CONFIG.hideSelector
       })
     });
-    
     // --- HANDLE SERVER ERRORS ---
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));

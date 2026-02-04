@@ -94,7 +94,12 @@ app.post('/export-video', async (req, res) => {
   
   // Use index4capture.html which strips out .do-not-capture elements
   // If URL ends with /, append index4capture.html, otherwise use as-is
-  const captureUrl = url.endsWith('/') ? url + 'index4capture.html' : url
+  let captureUrl = url.endsWith('/') ? url + 'index4capture.html' : url
+  
+  // Append resolution parameter to the URL so the capture page can apply correct aspect ratio
+  const urlObj = new URL(captureUrl)
+  urlObj.searchParams.set('resolution', resolution)
+  captureUrl = urlObj.toString()
   
   console.log('Export configuration:', {
     originalUrl: url,

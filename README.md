@@ -9,7 +9,7 @@ Convert GSAP animations into MP4 video files for social media and other uses.
 │   ├── server.js           Server-side video rendering
 │   ├── timeline-script.js  Required by gsap-video-export
 │   ├── package.json        Node.js dependencies
-│   ├── nixpacks.toml       Railway Chromium config
+│   ├── railpack.json       Railway build config (Chromium)
 │   └── README.md           Deployment instructions
 │
 ├── ftp-client/         ← Upload to your FTP/web server

@@ -1,11 +1,100 @@
-# image folder
-img/
+# .gitignore - macOS + common web/dev files
+# Added: 2025-11-06
 
-# deployment instructions
-DEPLOY.md
+########################
+# macOS
+########################
+# Icon files
+Icon?
+._*
 
-# hidden MacOS files
+# Finder and metadata
 .DS_Store
+.AppleDouble
+.LSOverride
 
-# vscode settings
+# Spotlight, Trash, and volume metadata
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
+
+########################
+# Node / Web / Build
+########################
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+public/build/
+.cache/
+.parcel-cache/
+
+# Framework caches / outputs
+.next/
+.nuxt/
+.vite/
+.out/
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files (sensitive)
+.env
+.env.local
+.env.*.local
+mcp.json
+
+# Lockfiles (optional — remove if you track locks)
+package-lock.json
+yarn.lock
+
+########################
+# Logs, coverage, reports
+########################
+logs/
+*.log
+coverage/
+.nyc_output/
+test-results.xml
+
+########################
+# IDE / editor
+########################
 .vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.claude
+CLAUDE.md
+
+########################
+# OS / Misc
+########################
+Thumbs.db
+
+# Local Design Files
+00_Bilder/
+
+# Licensed Materials such as fonts
+fonts/
+
+# notes
+localPHPserverSnippet.md
+note.md
+notes/
+
+# media files
+*.mp4
+*.webm
+*.jpg
+3Dobj/
+3d/
+vid/

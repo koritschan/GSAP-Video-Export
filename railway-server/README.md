@@ -63,10 +63,21 @@ const VIDEO_EXPORT_CONFIG = {
 ```
 
 **How it works:**
-- Server receives directory URL (e.g., `https://site.com/animation/`)
-- Appends `index4capture.html` → visits `https://site.com/animation/index4capture.html`
-- That page fetches `index.html` and strips `.do-not-capture` elements
+- Client builds the capture URL: `https://site.com/animation/index4capture.html?h1=...&p=...`
+- Server receives the full URL (or a bare directory URL — it appends `index4capture.html` if the URL ends with `/`)
+- Server always appends/sets `?resolution=` on the capture URL
+- `index4capture.html` fetches `index.html`, strips `.do-not-capture` elements, and reads optional query params
 - Clean animation is captured without UI controls
+
+**Optional query params supported by `index4capture.html`:**
+- `h1` — headline text
+- `p` — body text
+- `video` — background video filename
+- `model` — 3D model filename
+- `entries` — JSON-encoded programme entries
+- `bgColor` — CSS variable name for background color
+- `logoMode` — logotype mode flag
+- `useLogoOutro` — logo outro flag
 
 **Response:** Binary MP4 file download
 
